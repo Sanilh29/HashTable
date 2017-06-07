@@ -1,3 +1,4 @@
+//Sanil Hattangadi, hash.cpp that creates algorithms for methods
 #include <fstream>
 #include <ctime>
 #include <cstdlib>
@@ -6,7 +7,7 @@
 
 using namespace std;
 
-Hash::Hash(){
+Hash::Hash(){//constructs the table
   array = new Node*[100];
   size = 100;
 }
@@ -15,17 +16,17 @@ void Hash::add(){
   add(new Student());
 }
 
-void Hash::remove(int id){
-  for (int i=0;i < size; i++){
+void Hash::remove(int id){//removes a student given an id
+  for (int i=0;i < size; i++){//walk through array
     Node* current = array[i];
-    if (current){
-      if (current->data()->getId() == id){
+    if (current){//if theres a link list
+      if (current->data()->getId() == id){//if deleted id is first in list
 	array[i]= current->getNext();
 	delete current;
       }
-      else{
+      else{//if its farther in list
 	Node* previous = current;
-	current = current->getNext();
+	current = current->getNext();//walk through list
 	while (current){
 	  if (current->data()->getId()==id){
 	    previous->setNext(current->getNext());
@@ -38,13 +39,14 @@ void Hash::remove(int id){
   }
 }
 
-void Hash::addRandom(int number){
+void Hash::addRandom(int number){//adding random students with id and gpa
   char* first[100];
   char* last[100];
   ifstream firstStream;
   ifstream lastStream;
   firstStream.open("first.txt");
   lastStream.open("last.txt");  
+  //accessing the file
   if (firstStream.is_open() && lastStream.is_open()){
     int i = 0;
     char newInput[30];
@@ -69,7 +71,7 @@ void Hash::addRandom(int number){
     char* firstname;
     char* lastname;
     float gpa;
-    for (int j = 0; j < number; j++){
+    for (int j = 0; j < number; j++){//gives the student its information
       id = 1000 + rand()%9000;
       firstname = first[rand()%i];
       lastname = last[rand()%s];
@@ -79,17 +81,17 @@ void Hash::addRandom(int number){
   }
 }
 
-void Hash::print(){
-  for (int i = 0; i < size; i++){
+void Hash::print(){//printing out the list of students
+  for (int i = 0; i < size; i++){//walk through array
     Node* current = array[i];
-    while (current){
+    while (current){//walk through linked list
       current->data()->print();
       current = current->getNext();
     }
   }
 }
 
-void Hash::add(Student* student, bool checkExpand){
+void Hash::add(Student* student, bool checkExpand){//adding a student
   int key = getKey(student);
   if (array[key]){
     Node* current= array[key];
@@ -108,12 +110,12 @@ void Hash::add(Student* student, bool checkExpand){
   }
 }
 
-void Hash::expand(){
+void Hash::expand(){//expands the table after it has three collisions
   Node** old = array;
-  array = new Node* [size*2 + 1];
+  array = new Node* [size*2 + 1];//double the size of the array
   int oldsize = size;
   size = size*2+1;
-  for (int i = 0; i < size; i++){
+  for (int i = 0; i < size; i++){//go through array
     Node* current = array[i];
     while (current){
       add(current->data());
@@ -122,7 +124,7 @@ void Hash::expand(){
   }
 }
 
-int Hash::getKey(Student* student){
+int Hash::getKey(Student* student){//get the key where the student's are located
   int key = student->getId();
   return key % size;
 }

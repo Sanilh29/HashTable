@@ -1,13 +1,13 @@
+//Sanil Hattangadi, creates methods and variables
 #ifndef STUDENT_H
 #define STUDENT_H
 
 #include <iostream>
 #include <string.h>
 
-
-//Student class, it has four different variables for the name, student id, and gpa......
 class Student{
  public:
+  //methods 
   Student();
   Student(int newId, char* first, char* last, float newGpa);
   ~Student();
@@ -15,6 +15,7 @@ class Student{
   int getId();
   float getGpa();
  private:
+  //variables
   char* firstName;
   char* lastName;
   int id;

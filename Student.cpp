@@ -1,3 +1,4 @@
+//Sanil Hattangadi, creates the algorithms for the methods
 #include <iostream>
 #include <cstring>
 #include <iomanip>
@@ -5,21 +6,19 @@
 
 using namespace std;
 
-//deconstructor
-Student::~Student(){
+Student::~Student(){//deconstructor
   delete firstName;
   delete lastName;
 }
-//constructors
-Student:: Student(int newId, char* first, char* last, float newGpa){
+
+Student:: Student(int newId, char* first, char* last, float newGpa){///constructor
   id = newId;
   firstName = first;
   lastName = last;
   gpa = newGpa;
 
 }
-Student::Student(){
-  //lets you build the student right there
+Student::Student(){ //sets the data to the student and taking it in
   lastName = new char[30];
   firstName = new char[30];
   cout << "What's the student's ID?" << endl;
@@ -39,13 +38,16 @@ Student::Student(){
   cout <<"ID: " << id << endl;
   cout <<"GPA: " << setprecision(2) <<fixed << gpa << endl;
 }
-int Student::getId(){
+
+int Student::getId(){//get the id
   return id;
 }
-float Student::getGpa(){
+
+float Student::getGpa(){//get the gpa
   return gpa;
 }
-void Student::print() {
+
+void Student::print() {//print the students info
   cout << "Student: " << firstName << " " << lastName << endl;
   cout << "ID: " << id << endl;
   cout << "GPA: " << gpa << endl;
