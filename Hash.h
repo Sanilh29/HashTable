@@ -9,7 +9,7 @@ class Hash{
   void addRandom(int number);
   void print();
  private:
-  void add(Student* student);
+  void add(Student* student, bool checkExpand = false);
   void expand();
   int getKey(Student* student);
   Node** array;

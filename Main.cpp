@@ -13,13 +13,12 @@ int main(){
   bool running = true;
 
   while(running){
-
+    cout << "Enter a command: add, remove, random, print, or quit." << endl;
     cin.getline(input, 128);
-    
-    if(input[0] == 'a') {
+    if(0==strcmp(input, "add")) {
       table->add();
     }
-    else if(input[0] == 'd'){
+    else if(0==strcmp(input, "remove")){
       int id;
       cout << "What is the ID of the student you want to remove?" << endl;
       cin >> id;
@@ -27,10 +26,10 @@ int main(){
       cin.ignore();
       
     }
-    else if(input[0] == 'p'){
+    else if(0==strcmp(input, "print")){
       table->print();
     }
-    else if(input[0] == 'r'){
+    else if(0==strcmp(input, "random")){
       int number;
       cout << "How many students do you want?" << endl;
       cin >> number;
